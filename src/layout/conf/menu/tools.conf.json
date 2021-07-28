@@ -1,0 +1,99 @@
+{
+    "id":"menuTools",
+    "title": "Tools",
+    "type": "MENU",
+    "options": [
+        {
+            "id": "subMenuBrosing",
+            "title": "BROWSING",
+            "link": "/browsing",
+            "type": "SUBMENU",
+            "options": [
+                {
+                    "id": "dtt-browsing",
+                    "title": "Drawing Traces Tool",
+                    "state": "soon",
+                    "link" : "/dtt"
+                },
+                {
+                    "id": "tracks-browsing",
+                    "title": "Tracks (Gbrowser)",
+                    "state": "disabled",
+                    "link" : "/gbrowser"
+                },
+                {
+                    "id": "tps-browsing",
+                    "title": "TextPreso Search",
+                    "state": "disabled",
+                    "link" : "/textpreso"
+                },
+                {
+                    "id": "pwms-browsing",
+                    "title": "Clustering for PWMs",
+                    "state": "disabled",
+                    "link" : "/clustering_pwms"
+                },
+                {
+                    "id": "TranscriptionFF-browsing",
+                    "title": "Transcription Factor Family Browser",
+                    "state": "disabled",
+                    "link" : "/tffbrowser"
+                },
+                {
+                    "id": "coexpression-browser",
+                    "title": "Coexpression Browser",
+                    "state": "disabled",
+                    "link" : "/coexpression"
+                }
+                
+            ]
+        },
+        {
+            "id": "SunMenuDev",
+            "title": "DEVELOPER",
+            "link": "/developer",
+            "type": "SUBMENU",
+            "options": [
+                {
+                    "id": "api",
+                    "title": "Webservices",
+                    "state": "disabled",
+                    "link": "/ws"
+                }
+            ]
+        },
+        {
+            "id": "SubMenuExternal",
+            "title": "EXTERNAL",
+            "link": "/externalTools",
+            "type": "SUBMENU",
+            "options": [
+                {
+                    "id": "rsaTOols",
+                    "title": "RSA Tools",
+                    "link" : "http://embnet.ccg.unam.mx/rsat/",
+                    "state": "enabled",
+                    "target": "_blank"
+                },
+                {
+                    "id": "geneCons",
+                    "title": "Gene Context Tool",
+                    "state": "disabled",
+                    "link" : "/"
+                },
+                {
+                    "id": "esAtools",
+                    "title": "Gene Expression Analysis Tools",
+                    "state": "disabled",
+                    "link" : "/"
+                },
+                {
+                    "id": "promos",
+                    "title": "Promoter Analysis Tool",
+                    "state": "disabled",
+                    "link" : "/"
+                }
+            ]
+        }
+    ]
+}

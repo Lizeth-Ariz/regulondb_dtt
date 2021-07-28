@@ -1,0 +1,42 @@
+{
+    "id": "menudownloadset",
+    "title": "Download set",
+    "type": "MENU",
+    "options":[
+        {
+            "id": "expDatasets",
+            "title": "Experimental Datasets",
+            "link": "/experimentaldt",
+            "state": "disabled",
+            "type": "LINK"
+        },
+        {
+            "id": "cpuPredictions",
+            "title": "Computational Predictions",
+            "link": "/cpupredictions",
+            "state": "disabled",
+            "type": "LINK"
+        },
+        {
+            "id": "ht",
+            "title": "High-throughput Datasets",
+            "link": "/htweb",
+            "state": "disabled",
+            "type": "LINK"
+        },
+        {
+            "id": "fullversion",
+            "title": "Full version",
+            "link": "/fullversion",
+            "state": "disabled",
+            "type": "LINK"
+        },
+        {
+            "id": "upHTweb",
+            "title": "Submit Your High Througput data",
+            "state": "disabled",
+            "link": "/htsubmit",
+            "type": "LINK"
+        }
+    ]
+}

@@ -1,0 +1,89 @@
+{
+    "id":"menuHelp",
+    "title": "Help",
+    "type": "MENU",
+    "options": [
+        {
+            "id": "subMenuHelp",
+            "title": "HELP!",
+            "link": "/help",
+            "type": "SUBMENU",
+            "options": [
+                {
+                    "id": "gettingStart",
+                    "title": "Getting started Using RegulonDB",
+                    "state": "disabled",
+                    "link" : "/started"
+                },
+                {
+                    "id":"instructionalvideo",
+                    "title":"Instructional Video",
+                    "state": "disabled",
+                    "link": "/instructionalvideo"
+                },
+                {
+                    "id":"glossary",
+                    "title":"RegulonDB Glossary",
+                    "state":"disabled",
+                    "link":"/glossary"
+                },
+                {
+                    "id":"cite",
+                    "title":"How to cite",
+                    "state":"disabled",
+                    "link":"/cite"
+                },
+                {
+                    "id":"Frequent Navigation Scenarios",
+                    "title":"Frequent Navigation Scenarios",
+                    "state":"disabled",
+                    "link":"/frequent"
+                }
+            ]
+        },
+        {
+            "id": "subMenuDocs",
+            "title": "DOCUMENTATION",
+            "link": "/docs",
+            "type": "SUBMENU",
+            "options": [
+                {
+                    "id": "Annotation Process",
+                    "title": "Annotation Process",
+                    "state": "disabled",
+                    "link" : "/annot"
+                },
+                {
+                    "id": "BioNLP research",
+                    "title": "BioNLP research",
+                    "state": "disabled",
+                    "link" : "/biosearch"
+                },
+                {
+                    "id": "Annotation Process for HT experiments",
+                    "title": "Annotation Process for HT experiments",
+                    "state": "disabled",
+                    "link" : "/annotationHT"
+                },
+                {
+                    "id": "RegulonDB Papers",
+                    "title": "RegulonDB Papers",
+                    "state": "disabled",
+                    "link" : "/papers"
+                },
+                {
+                    "id": "Related Papers",
+                    "title": "Related Papers",
+                    "state": "disabled",
+                    "link" : "/relatedPapers"
+                },
+                {
+                    "id": "Evidence Classification",
+                    "title": "Evidence Classification",
+                    "state": "disabled",
+                    "link" : "/evidence"
+                }
+            ]
+        }
+    ]
+}

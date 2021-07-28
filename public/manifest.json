@@ -1,0 +1,13 @@
+{
+	"short_name": "RegulonDB",
+	"name": "RegulonDB Browser",
+	"description": "",
+	"display": "standalone",
+	"scope": "/",
+	"author": "",
+	"icons": [],
+	"background_color": "#fff",
+	"categories": ["books", "education", "medical"],
+  "start_url": "",
+  "version": "1.0.0"
+}

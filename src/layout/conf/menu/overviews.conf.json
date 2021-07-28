@@ -1,0 +1,42 @@
+{
+    "id": "menuOverviews",
+    "title": "Overviews",
+    "type": "MENU",
+    "options":[
+        {
+            "id": "iocs",
+            "title": "Integrated Overview",
+            "link": "/inteOverview",
+            "state": "disabled",
+            "type": "LINK"
+        },
+        {
+            "id": "geuniGro",
+            "title": "Gensor Unit Groups",
+            "link": "/gensorUnitGroups",
+            "state": "disabled",
+            "type": "LINK"
+        },
+        {
+            "id": "trans",
+            "title": "Transcriptional Regulatory Network",
+            "link": "/trn",
+            "state": "disabled",
+            "type": "LINK"
+        },
+        {
+            "id": "cellSEns",
+            "title": "Cell Sensing",
+            "link": "/cellsensing",
+            "state": "disabled",
+            "type": "LINK"
+        },
+        {
+            "id": "oblic",
+            "title": "Additional Resources",
+            "state": "disabled",
+            "link": "/otherresoulces",
+            "type": "LINK"
+        }
+    ]
+}
