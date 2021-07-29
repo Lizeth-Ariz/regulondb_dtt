@@ -4,8 +4,7 @@ import { Button, IconButton, DropDown, Split } from "./input/Buttons";
 import {
   RadioButtonGroup,
   CheckBoxGroup,
-  CheckBox,
-  RadioButton
+  CheckBox
 } from "./input/Selectors";
 import { TextBox, TextPassword, TextArea } from "./input/Text";
 
@@ -20,7 +19,6 @@ export {
   DropDown,
   Split,
   RadioButtonGroup,
-  RadioButton,
   CheckBox,
   CheckBoxGroup,
   TextArea,

@@ -2,14 +2,14 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Layout from "./layout/layout";
 import Tips from "./apps/tips/tips";
-import YourApp from "./apps/your_app/your_app";
+import Dtt from './apps/dtt/dtt'
 
 export default function App() {
   return (
     <Layout>
       <Switch>
         <Route exact path={"/"}>
-          <YourApp />
+          <Dtt />
         </Route>
         <Route path={"/tips"}>
           <Tips />
