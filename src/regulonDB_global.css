@@ -255,3 +255,57 @@ td {
 }
 
 /* s */
+
+div.container {
+  position: relative;
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  background-color: #ebebeb;
+  border: 3px solid #32617d;
+  border-radius: 5px;
+  cursor: pointer;
+}
+div.elements {
+  display: relative;
+  float: left;
+  margin: auto;
+}
+
+input.form {
+  color: #000000;
+  padding: 3px;
+  width: 150px;
+  background-color: #ffffff;
+  border: 0px solid #ebebeb;
+  border-radius: 4px;
+  margin: 5px auto;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+input.radio {
+  color: #000000;
+  margin-left: 50px;
+  margin-right: 5px;
+}
+button {
+  color: #ffffff;
+  padding: 10px;
+  background-color: #32617d;
+  border: 1px solid #32617d;
+}
+ul {
+  margin: 5px;
+  padding: 0px;
+}
+
+div.list-download {
+  display: none;
+  position: absolute;
+  background-color: #000000;
+  right: 0;
+  transform: translate(0, 35px);
+  z-index: 1;
+}
+
+
