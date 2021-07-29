@@ -1,0 +1,126 @@
+{
+  "dna": {
+    "objectType": "dna",
+    "defaultColor": "#000",
+    "heigth": 20,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 12,
+      "family": "arial",
+      "fill": "#000"
+    }
+  },
+  "gene": {
+    "objectType": "gene",
+    "defaultColor": "#000",
+    "heigth": 20,
+    "rowSize": 0.5,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 12,
+      "family": "arial",
+      "fill": "#000"
+    }
+  },
+  "operon": {
+    "objectType": "operon",
+    "defaultColor": "#000",
+    "heigth": 20,
+    "rowSize": 0.5,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 12,
+      "family": "arial",
+      "fill": "#000"
+    }
+  },
+  "ppGpp": {
+    "objectType": "operon",
+    "defaultColor": "#000",
+    "heigth": 10,
+    "width": 20,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 9,
+      "family": "arial",
+      "fill": "#000"
+    }
+  },
+  "promoter": {
+    "objectType": "promoter",
+    "defaultColor": "#000",
+    "heigth": 20,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 12,
+      "family": "arial",
+      "fill": "#000"
+    }
+  },
+  "riboswitch": {
+    "objectType": "promoter",
+    "defaultColor": "#000",
+    "heigth": 20,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 12,
+      "family": "arial",
+      "fill": "#000"
+    }
+  },
+  "srna": {
+    "objectType": "srna",
+    "defaultColor": "#000",
+    "heigth": 20,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 12,
+      "family": "arial",
+      "fill": "#000"
+    }
+  },
+  "sitedna": {
+    "objectType": "site-dna",
+    "defaultColor": "#000",
+    "heigth": 20,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 12,
+      "family": "arial",
+      "fill": "#000"
+    }
+  },
+  "terminator": {
+    "objectType": "terminator",
+    "defaultColor": "#000",
+    "heigth": 20,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 12,
+      "family": "arial",
+      "fill": "#000"
+    }
+  },
+  "transcriptionalA": {
+    "objectType": "transcriptional",
+    "defaultColor": "#000",
+    "heigth": 20,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 12,
+      "family": "arial",
+      "fill": "#000"
+    }
+  },
+  "transnationalA": {
+    "objectType": "transcriptional",
+    "defaultColor": "#000",
+    "heigth": 20,
+    "stroke": { "color": "#000", "width": 1, "linecap": "round" },
+    "font": {
+      "size": 12,
+      "family": "arial",
+      "fill": "#000"
+    }
+  }
+}

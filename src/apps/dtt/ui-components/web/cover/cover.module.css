@@ -1,0 +1,11 @@
+.cover{
+    padding: 2% 10% 2% 10%;
+    z-index: -1;
+    left: 0;
+    width: 100%;
+    background-color: #99999999;
+}
+
+.error{
+    background-color: #C93A1D99;
+}

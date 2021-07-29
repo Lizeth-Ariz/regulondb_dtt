@@ -1,0 +1,9 @@
+objectType	leftEndPosition	rightEndPosition	strand	objectColor	lineWidth	lineType	labelName	labelFont	labelColor	labelSize	tooltip	lineColor
+gene	+3597181	3597681	reverse	0,209,204	1	0	livJ	arial	0,0,0	12	Genome position:<br> 3596578-3597681.	0,0,0
+tf_binding_site	3597906	3597917	reverse	255,28,0	1	0	Lrp	arial	0,0,0	12	Genome position: 3597906-3597917	0,0,0
+srna	3597703	3597726	reverse	0,0,0	1	0	GcvB	arial	0,0,0	12	Genome position: 3597703-3597726	0,0,0
+terminator	3597910	3597930	reverse	255,255,255	1	1	terminator	arial	0,0,0	12	rho-independent.	0,0,0
+promoter	3597785	3597785	reverse	0,0,0	1	1	livJp	arial	0,0,0	12	Sigma factor: <br> Sigma70.	0,0,0
+gene	3597952	3598181+	reverse	150,0,0	1	0	rpoH	arial	0,0,0	12	Genome position:<br> 3597952-3598806.	0,0,0
+ppGpp	3597787	3597820	reverse	19,221,0	1	0	ppGpp	arial	0,0,0	10	Genome position: 3597787-3597820	0,0,0
+ppGpp	3597787	3597855	reverse	19,221,0	1	0	DksA-ppGpp	arial	0,0,0	10	Genome position: 3597787-3597855	0,0,0
