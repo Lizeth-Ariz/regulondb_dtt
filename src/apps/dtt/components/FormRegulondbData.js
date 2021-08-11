@@ -160,6 +160,9 @@ import {
   RadioButtonGroup,
   CheckBoxGroup
 } from "../ui-components/index";
+import Graphing from "./regulonDBData/graphing";
+
+
 
 class FormRegulondbData extends Component {
   constructor(props) {
@@ -179,13 +182,17 @@ class FormRegulondbData extends Component {
         { id: 7, value: "traslational attenuattor", isCheck: true },
         { id: 8, value: "trascriptional attenuattor", isCheck: true },
         { id: 9, value: "ppGpp", isCheck: true }
-      ]
+      ],
+      ready: false
     };
   }
   handleSubmit = (event) => {
+    let leftEndPosition = document.getElementById("txt1").value 
+    let rightEndPosition = document.getElementById("txt2").value
     event.preventDefault();
     const data = this.state;
     console.log("final data is", data);
+    this.setState({ready: true, leftEndPosition: leftEndPosition, rightEndPosition: rightEndPosition})
   };
   /*handleInputChange = (event) => {
     event.preventDefault();
@@ -221,11 +228,22 @@ class FormRegulondbData extends Component {
     document.getElementById("txt2").value = "3851712";
   };
   clear = () => {
+    this.setState({ready: false})
     document.getElementById("txt1").value = "";
     document.getElementById("txt2").value = "";
   };
   render() {
+
+    const {
+      leftEndPosition,
+      rightEndPosition,
+      strand,
+      covered,
+      elements
+    } = this.state
+
     return (
+      <div>
       <div className="container">
         <div>
           <label>
@@ -315,6 +333,20 @@ class FormRegulondbData extends Component {
           style={{ float: "left", marginRight: "2%" }}
         />
         <Button label="Demo" onClick={this.handleDemo} />
+      </div>
+      <h2>Graph</h2>
+      {
+        this.state.ready
+        ?<Graphing 
+            leftEndPosition={leftEndPosition}
+            rightEndPosition={rightEndPosition}
+            strand={strand}
+            covered={covered}
+            elements={elements}
+          />
+        :null
+      }
+      
       </div>
     );
   }
