@@ -22,7 +22,7 @@ export default function Graphing(
 ) {
 
     const [_data, set_data] = useState()
-    const [_state, set_state] = useState()
+    //const [_state, set_state] = useState()
 
     if (_data) {
         //console.log(_data)

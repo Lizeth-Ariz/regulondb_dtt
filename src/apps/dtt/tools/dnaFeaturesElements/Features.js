@@ -6,6 +6,7 @@ import DrawGene from "./gene";
 import DrawOperon from "./operon";
 import DrawppGpp from "./ppGpp";
 import DrawPromoter from "./promoter";
+import DrawTerminador from "./terminator";
 import config from "./elements.conf.json";
 
 class Feature {
@@ -128,6 +129,22 @@ class Feature {
               break;
             case "promoter":
               DrawPromoter({
+                id: feature?._id,
+                canva: svg,
+                dna: DNA,
+                leftEndPosition: feature?.leftEndPosition,
+                rightEndPosition: feature?.rightEndPosition,
+                strand: feature?.strand,
+                labelName: feature?.labelName,
+                stroke: stroke(feature),
+                font: font(feature),
+                color: rgb_to_rgbFormat(feature?.objectRGBColor),
+                tooltip: feature?.tooltip,
+                separation: separation(feature)
+              });
+              break;
+            case "terminator":
+              DrawTerminador({
                 id: feature?._id,
                 canva: svg,
                 dna: DNA,
