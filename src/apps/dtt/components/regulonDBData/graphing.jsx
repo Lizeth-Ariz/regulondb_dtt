@@ -25,10 +25,11 @@ export default function Graphing(
     const [_state, set_state] = useState()
 
     if (_data) {
+        //console.log(_data)
         return <DttGraphic id_canvas={"0120"} dnaFeatures_data={_data} />
     }
 
-    console.log(leftEndPosition,rightEndPosition)
+    //console.log(leftEndPosition,rightEndPosition)
 
     return (
         <div>

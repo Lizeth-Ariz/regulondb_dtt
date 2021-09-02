@@ -8,6 +8,5 @@ export function validation(dnaFeatures_data) {
   dnaFeatures_data = validateElements(dnaFeatures_data);
   dnaFeatures_data = validateDNA(dnaFeatures_data);
   dnaFeatures_data = overlaping(dnaFeatures_data);
-  console.log(dnaFeatures_data);
   return dnaFeatures_data;
 }

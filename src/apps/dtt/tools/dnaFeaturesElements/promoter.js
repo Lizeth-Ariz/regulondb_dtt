@@ -2,9 +2,13 @@
 /**
  *
  */
-import { stroke_validate, font_validate, color_validate } from "./validation";
+import {
+  stroke_validate,
+  font_validate,
+  color_validate
+} from "./draw_validation";
 import { label } from "./label";
-import config from "./element.conf.json";
+import config from "./elements.conf.json";
 const conf = config.promoter;
 
 export default function DrawPromoter({
@@ -12,7 +16,7 @@ export default function DrawPromoter({
   canva,
   anchor,
   dna,
-  separation = 20,
+  separation = 0,
   leftEndPosition = 10,
   rightEndPosition = 50,
   labelName = "Name",
@@ -35,6 +39,7 @@ export default function DrawPromoter({
     rightEndPosition = leftEndPosition + 10;
   }
   // atributos
+  let group = canva.group();
   const dnaX = dna.x,
     dnaY = dna.y,
     widthActive = dna.widthActive,
@@ -42,66 +47,71 @@ export default function DrawPromoter({
     x = ((leftEndPosition - dna.leftEndPosition) * widthActive) / dnaSize,
     sizeP = ((rightEndPosition - leftEndPosition) * widthActive) / dnaSize;
   //atributos de Cuerpo
-  const bodyH = conf.heigth;
-  const heigth = conf.heigth + separation + 50;
-  let px = x + dnaX;
-  let py = dnaY - heigth;
-  let ay = dnaY - heigth - 5;
+  let bodyH = conf.height / 2 + separation - 15;
+  //console.log(conf);
+  let bodyW = conf.width;
+  const headH = conf.height;
+  const height = headH + bodyH;
+  let posX = x + dnaX;
+  let posY = dnaY;
+  let txtX;
+  let txtY;
+  // atributos de flecha
+  let pmX;
+  let pmY;
+  let az;
+  // atributos de position
+  if (strand === "reverse") {
+    bodyH = posY + bodyH + headH / 2;
+    bodyW = posX - bodyW;
+    txtX = bodyW;
+    txtY = bodyH + font.size - 5;
+    pmX = bodyW;
+    pmY = bodyH;
+    az = -5;
+  } else {
+    bodyH = posY - bodyH - headH / 2;
+    bodyW = posX + bodyW;
+    txtX = posX;
+    txtY = bodyH - font.size - 5;
+    pmX = bodyW;
+    pmY = bodyH;
+    az = 5;
+  }
+
+  // draw body
+  const body = canva.path(
+    "M " + posX + "," + posY + " " + posX + "," + bodyH + "H " + bodyW
+  );
+  body.fill("none");
+  body.stroke(stroke);
 
   //text
   const text = label({
     canvas: canva,
-    x: px,
-    y: dnaY - heigth - font.size,
+    x: txtX,
+    y: txtY,
     text: labelName,
     font: font
   });
-  // draw body
-  const body = canva.path("M 0 0 V " + -heigth + "H " + text.length() + "v");
-  body.fill("none").move(px, py);
-  body.stroke(stroke);
-  //atributos de arrow
-  let headH = conf.heigth;
-  let ax = x + dnaX + text.length() - 4;
 
-  let PromH = bodyH + headH;
-  let posX = x;
-  let posY = ay;
   // draw arrow
-  const arrow = canva.path("m 0,0 5,5 -5,5 v 0");
-  arrow.fill("none").move(ax, ay);
+  const arrow = canva.path(
+    "M " +
+      (pmX - az) +
+      "," +
+      (pmY + az) +
+      " " +
+      pmX +
+      "," +
+      pmY +
+      " " +
+      (pmX - az) +
+      "," +
+      (pmY - az)
+  );
+  arrow.fill("none");
   arrow.stroke(stroke);
-  //anchor effect
-  if (anchor) {
-    posX = anchor.posX;
-    posY = anchor.posY - separation - anchor.heigth;
-    if (anchor.strand === "reverse") {
-      posX = anchor.posX;
-      posY = anchor.posY + anchor.heigth + separation;
-    }
-  }
-  var group = canva.group();
-  group.add(body);
-  group.add(arrow);
-
-  // reverse effect
-  if (strand === "reverse") {
-    group.transform({
-      rotate: 180,
-      translateX: -bodyH,
-      translateY: heigth + 5
-    });
-    text.transform({
-      translateY: heigth * 2 + 15,
-      translateX: -bodyH + 5
-    });
-  }
-  // group.add(text);
-  // Toltip
-  group.attr({
-    "data-tip": "",
-    "data-for": `${canva.node?.id}-${id}`
-  });
   return {
     id: id,
     canva: canva,
@@ -109,7 +119,7 @@ export default function DrawPromoter({
     draw: group,
     posX: posX,
     posY: posY,
-    heigth: PromH,
+    height: height,
     dna: dna,
     separation: separation,
     leftEndPosition: leftEndPosition,

@@ -1,13 +1,18 @@
-//DrawGene v 1.0.0
+//DrawOperon v 1.0.0
 /**
- * falta agregar la funcion para mostrar el corte del elemento,
+ *falta agregar la funcion para mostrar el corte del elemento
+ *  falta etiqueta
  */
-import { stroke_validate, font_validate, color_validate } from "./validation";
-import config from "./element.conf.json";
+import {
+  stroke_validate,
+  font_validate,
+  color_validate
+} from "./draw_validation";
 import { label } from "./label";
-const conf = config?.gene;
+import config from "./elements.conf.json";
+const conf = config?.operon;
 
-export default function DrawGene({
+export default function DrawOperon({
   id,
   canva,
   anchor,
@@ -15,7 +20,7 @@ export default function DrawGene({
   separation = 0,
   leftEndPosition = 0,
   rightEndPosition = 20,
-  labelName = "geneName",
+  labelName = "operonName",
   strand = "forward",
   color = "aqua",
   opacity = 1,
@@ -24,7 +29,7 @@ export default function DrawGene({
   tooltip = ""
 }) {
   //Validation
-  if (!canva || !dna || !id | (leftEndPosition > rightEndPosition)) {
+  if (!canva || !dna || !id || leftEndPosition > rightEndPosition) {
     return null;
   }
   stroke = stroke_validate(stroke, conf.stroke);
@@ -46,51 +51,38 @@ export default function DrawGene({
     separation *= -1;
   }
   //atributos de cuerpo
-  const heigth = conf?.heigth;
+  const height = conf?.height;
   const rowW = () => {
-    return heigth * conf?.rowSize;
+    return height * conf?.rowSize;
   };
-  const lx1 = width + dnaX + x;
-  const ly1 = heigth;
-  const lx2 = width + dnaX - rowW() + x;
-  const ly2 = 0;
   let posX = x + dnaX;
-  let posY = dnaY - separation - heigth * 2;
-  //Draw Gene
-  const gene = canva.path(
-    "m " +
-      (x + dnaX) +
-      "," +
-      heigth / 2 +
-      " v " +
-      heigth +
+  let posY = dnaY - separation - height;
+  //Draw operon
+  const operon = canva.path(
+    "m 0,0 v " +
+      height +
       " h " +
       (width - rowW()) +
-      " v " +
-      heigth / 2 +
       " L " +
-      lx1 +
+      width +
       "," +
-      ly1 +
-      " " +
-      lx2 +
+      height / 2 +
+      " L " +
+      (width - rowW()) +
       "," +
-      ly2 +
-      " v " +
-      heigth / 2 +
+      0 +
       " z"
   );
-  gene.move(posX, posY);
-  gene.id(id);
-  gene.fill(color);
-  gene.stroke(stroke);
-  gene.opacity(opacity);
-  //label
+  operon.move(posX, posY);
+  operon.id(id);
+  operon.fill(color);
+  operon.stroke(stroke);
+  operon.opacity(opacity);
   const text = label({
     canvas: canva,
     element_x: posX,
-    element_y: posY + heigth / 2,
-    element_h: heigth,
+    element_y: posY,
+    element_h: height,
     element_w: width,
     text: labelName,
     font: font
@@ -98,32 +90,32 @@ export default function DrawGene({
   // reverse effect
   if (strand === "reverse") {
     if (anchor) {
-      posX = x;
+      posX = x + dnaX;
       posY = dnaY + separation;
     }
-    gene.transform({
+    operon.transform({
       rotate: 180,
-      translateY: heigth * 2
+      translateY: height
     });
     text.transform({
-      translateY: heigth * 2
+      translateY: height
     });
-    posY = heigth * 2 + posY;
+    posY = height * 2 + posY;
   }
   // Toltip
-  gene.attr({
+  operon.attr({
     "data-tip": "",
     "data-for": `${canva.node?.id}-${id}`
   });
-
+  //return
   return {
     id: id,
     canva: canva,
-    draw: gene,
+    draw: operon,
     posX: posX,
     posY: posY,
     width: width,
-    heigth: heigth,
+    height: height,
     dna: dna,
     separation: separation,
     leftEndPosition: leftEndPosition,

@@ -1,10 +1,10 @@
-//draw DNA v 0.10.0
+//draw DNA v 0.2.0
 /**
  * Requiere documetacion y encabezados del manifiesto de RegulonDB
  *  falta etiqueta
  */
-import { stroke_validate, font_validate } from "./validation";
-import config from "./element.conf.json";
+import { stroke_validate, font_validate } from "./draw_validation";
+import config from "./elements.conf.json";
 const conf = config.dna;
 
 export default function DrawDna({
@@ -17,8 +17,7 @@ export default function DrawDna({
   labelName = "DNA",
   opacity = 1,
   stroke,
-  font,
-  tooltip = ""
+  font
 }) {
   //validacion
   if (!canva || !id) {
@@ -32,7 +31,7 @@ export default function DrawDna({
   //atributos de DNA
   const canvaW = canva.node.clientWidth;
   const lx1 = x + (font["size"] * dnaLletter.length) / 2 + 5;
-  const lx2 = canvaW - (font["size"] * dnaRletter.length) / 2 - 7;
+  const lx2 = canvaW - font["size"] * dnaRletter.length;
   const widthActive = lx2 - lx1;
   //console.log(canva.node.clientHeight)
   const forwardActive = y;
@@ -45,17 +44,14 @@ export default function DrawDna({
   canva
     .text(dnaRletter)
     .font(font)
-    .move(
-      canvaW - (font["size"] * dnaRletter.length) / 2 - 2,
-      y - font["size"] / 2
-    );
+    .move(canvaW - font["size"] * dnaRletter.length, y - font["size"] / 2);
   //draw dna
-  const dna = canva.line(lx1, y, lx2, y).stroke(stroke).opacity(opacity);
+  const dna_line = canva.line(lx1, y, lx2, y).stroke(stroke).opacity(opacity);
   //return
   return {
     id: id,
     canva: canva,
-    draw: dna,
+    draw: dna_line,
     x: lx1,
     y: y,
     widthActive: widthActive,
@@ -68,7 +64,6 @@ export default function DrawDna({
     opacity: opacity,
     stroke: stroke,
     font: font,
-    tooltip: tooltip,
     objectType: "dna"
   };
 }

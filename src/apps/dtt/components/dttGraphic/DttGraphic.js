@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { IconButton, Button } from "../../ui-components/index";
-import { DNAfeatures } from "../../tools/dnaFeaturesGL/dna_features";
+import Feature from "../../tools/dnaFeaturesElements/Features";
 import Panzoom from "@panzoom/panzoom";
 import { ReImg } from "reimg";
 //import { pointer } from "d3";
@@ -19,7 +19,6 @@ class DttGraphic extends Component {
     const element = document.getElementById(
       `divCanvas_${this.state.id_canvas}`
     );
-
     if (element) {
       const instance = Panzoom(element);
       this.setState({ instance: instance });
@@ -74,10 +73,12 @@ class DttGraphic extends Component {
     element.click();
     element.remove();
   }
+
+
   render() {
     const { dnaFeatures_data } = this.props;
     const { id_canvas } = this.state;
-
+    const FEATURES = new Feature("id_dnaDraw", dnaFeatures_data, "test");
     //console.log(dnaFeatures_data);
 
     return (
@@ -173,12 +174,10 @@ class DttGraphic extends Component {
             <tr>
               <td>
                 <div>
-                  <div id={`divCanvas_${id_canvas}`}>
-                    <DNAfeatures
-                      id_drawPlace={`divCanvas_${id_canvas}`}
-                      id_canvas={id_canvas}
-                      dnaFeatures_data={dnaFeatures_data}
-                    />
+                  <div style={{overflow: "auto"}} id={`divCanvas_${id_canvas}`}>
+                    {
+                      FEATURES.draw(`divCanvas_${id_canvas}`, "id_canvas")
+                    }
                   </div>
                 </div>
               </td>

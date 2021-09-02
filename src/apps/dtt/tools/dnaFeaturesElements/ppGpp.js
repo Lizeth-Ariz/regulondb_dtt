@@ -1,6 +1,10 @@
-import { stroke_validate, font_validate, color_validate } from "./validation";
+import {
+  stroke_validate,
+  font_validate,
+  color_validate
+} from "./draw_validation";
 import { label } from "./label";
-import config from "./element.conf.json";
+import config from "./elements.conf.json";
 const conf = config.ppGpp;
 
 export default function DrawPpGpp({
@@ -35,73 +39,60 @@ export default function DrawPpGpp({
     dnaY = dna.y,
     widthActive = dna.widthActive,
     dnaSize = dna.size,
-    x = ((leftEndPosition - dna.leftEndPosition) * widthActive) / dnaSize,
-    sizeP = conf.width;
+    x = ((leftEndPosition - dna.leftEndPosition) * widthActive) / dnaSize;
   //atributos de cuerpo
-  let ppGppH = conf.heigth;
-  let ppGppW = sizeP;
-  let dksAX = 0;
+  let ell_w = font.size * 4;
+  let ell_h = font.size + 10;
+  const height = conf.height;
   let posX = x + dnaX;
-  let posY = dnaY - separation - ppGppH;
-  if (labelName === "DksA-ppGpp") {
-    ppGppW = sizeP / 2;
-    dksAX = posX;
-    posX += ppGppW;
+  let posY = dnaY - separation - height / 2 - ell_h / 2;
+  if (strand === "reverse") {
+    posY = dnaY + separation + height / 2 - ell_h / 2;
   }
   //Draw
-  const ppGpp = canva.ellipse(ppGppW, ppGppH);
-  ppGpp.move(posX, posY).stroke(stroke).fill(color);
-  const group = canva.group();
-  group.add(ppGpp);
-  let text;
-  //DksA effect
   if (labelName === "DksA-ppGpp") {
-    const dksA = canva.ellipse(ppGppW, ppGppH);
-    dksA.move(dksAX, posY).stroke(stroke).fill(color);
-    font.size = font.size - 0.2 * font.size;
-    text = label({
-      canvas: canva,
-      element_x: dksAX,
-      element_y: posY - 10,
-      element_h: ppGppH,
-      element_w: ppGppW,
-      text: "DksA ppGpp",
-      font: font
-    });
-    group.add(dksA);
-  } else {
-    text = label({
+    canva
+      .ellipse(ell_w + 3, ell_h + 2)
+      .move(posX, posY)
+      .stroke(stroke)
+      .fill(color);
+    font.size += 2;
+    label({
       canvas: canva,
       element_x: posX,
-      element_y: posY - 10,
-      element_h: ppGppH,
-      element_w: ppGppW,
-      text: "ppGpp",
+      element_y: posY,
+      element_h: ell_h,
+      element_w: ell_w,
+      text: "DksA",
       font: font
     });
+    font.size -= 2;
+    posX += ell_w - 1;
   }
-  group.add(text);
-  //strand effect
-  if (strand === "reverse") {
-    posY = dnaY + separation;
-    if (labelName === "DksA-ppGpp") {
-      group.move(dksAX, posY);
-    } else {
-      group.move(posX, posY);
-    }
-  }
+  canva.ellipse(ell_w, ell_h).move(posX, posY).stroke(stroke).fill(color);
+  label({
+    canvas: canva,
+    element_x: posX,
+    element_y: posY,
+    element_h: ell_h,
+    element_w: ell_w,
+    text: "ppGpp",
+    font: font
+  });
+  const group = canva.group();
+
   // Toltip
   group.attr({
     "data-tip": "",
     "data-for": `${canva.node?.id}-${id}`
   });
+
   return {
     id: id,
     canva: canva,
     posX: posX,
     posY: posY,
-    sizeP: sizeP,
-    heigth: ppGppH,
+    height: height,
     dna: dna,
     separation: separation,
     leftEndPosition: leftEndPosition,

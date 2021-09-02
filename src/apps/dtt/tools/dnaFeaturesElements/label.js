@@ -1,4 +1,4 @@
-import { font_validate, color_validate } from "./validation";
+//import { font_validate, color_validate } from "./draw_validation";
 
 export function label({
   id,

@@ -138,7 +138,7 @@ const DrawingTracesTool = () => {
       <Cover>
         <h1>DrawingTracesTool</h1>
       </Cover>
-      <Tabs tabSelect={"02"} tabsInfo={tabsInfo} tabs={tabs} />
+      <Tabs tabSelect={"01"} tabsInfo={tabsInfo} tabs={tabs} />
     </div>
   );
 };

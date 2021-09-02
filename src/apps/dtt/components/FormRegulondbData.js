@@ -190,8 +190,8 @@ class FormRegulondbData extends Component {
     let leftEndPosition = document.getElementById("txt1").value 
     let rightEndPosition = document.getElementById("txt2").value
     event.preventDefault();
-    const data = this.state;
-    console.log("final data is", data);
+    //const data = this.state;
+    //console.log("final data is", data);
     this.setState({ready: true, leftEndPosition: leftEndPosition, rightEndPosition: rightEndPosition})
   };
   /*handleInputChange = (event) => {
@@ -224,8 +224,8 @@ class FormRegulondbData extends Component {
     });
   };
   handleDemo = (e) => {
-    document.getElementById("txt1").value = "3851220";
-    document.getElementById("txt2").value = "3851712";
+    document.getElementById("txt1").value = "2306972";
+    document.getElementById("txt2").value = "2311534";
   };
   clear = () => {
     this.setState({ready: false})
