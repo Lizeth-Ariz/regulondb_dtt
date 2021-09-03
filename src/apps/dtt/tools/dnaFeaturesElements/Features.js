@@ -74,7 +74,9 @@ class Feature {
           stroke: stroke(dna_info),
           font: font(dna_info)
         });
+        
         this.featureElements_data.map((feature, i) => {
+          //console.log(feature)
           switch (feature?.objectType) {
             case "dna":
               break;
