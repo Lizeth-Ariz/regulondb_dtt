@@ -38,7 +38,7 @@ class Feature {
       }
       return null;
     });
-    return (level + 1) * 40 * 2;
+    return (level) * 40 * 2;
   }
 
   getDNAelement() {
@@ -50,6 +50,9 @@ class Feature {
   draw(idDrawPlace, idCanvas, autoAdjust = false) {
     try {
       let drawPlace = document.getElementById(idDrawPlace);
+      if(!drawPlace){
+        return null
+      }
       drawPlace.innerHTML = "";
       let width = this.width;
       let height = this.height;
