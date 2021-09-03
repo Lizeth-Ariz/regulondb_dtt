@@ -224,8 +224,8 @@ class FormRegulondbData extends Component {
     });
   };
   handleDemo = (e) => {
-    document.getElementById("txt1").value = "2306972";
-    document.getElementById("txt2").value = "2311534";
+    document.getElementById("txt1").value = "4099491";
+    document.getElementById("txt2").value = "4102673";
   };
   clear = () => {
     this.setState({ready: false})

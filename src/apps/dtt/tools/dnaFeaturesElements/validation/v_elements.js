@@ -33,11 +33,24 @@ export function validateElements(dnaFeatures_data = []) {
             );
           }
         } else {
-          if (feature?.linkedObjectsWhenNoPositions) {
-            if (feature?.strand) {
-              feature.push(feature);
+          if (feature?.linkedObjectWhenNoPositions) {
+            let leftEndPosition = toInt(feature?.linkedObjectWhenNoPositions?.leftEndPosition);
+            let rightEndPosition = toInt(feature?.linkedObjectWhenNoPositions?.rightEndPosition);
+            if (leftEndPosition <= rightEndPosition) {
+              feature.leftEndPosition = leftEndPosition;
+              feature.rightEndPosition = rightEndPosition;
+              if (feature?.strand) {
+                features.push(feature);
+              } else {
+                eMes("strand", inx);
+              }
             } else {
-              eMes("strand", inx);
+              console.warn(
+                inx,
+                "positions error",
+                feature?.leftEndPosition,
+                feature?.rightEndPosition
+              );
             }
           } else {
             eMes("posLeft and PosRigth", inx);
