@@ -7,6 +7,7 @@ import DrawOperon from "./operon";
 import DrawppGpp from "./ppGpp";
 import DrawPromoter from "./promoter";
 import DrawTerminador from "./terminator";
+import DrawTFBindingSite from "./tf_binding_site";
 import config from "./elements.conf.json";
 
 class Feature {
@@ -50,7 +51,7 @@ class Feature {
   draw(idDrawPlace, idCanvas, autoAdjust = false) {
     try {
       let drawPlace = document.getElementById(idDrawPlace);
-      if(!drawPlace){
+      if (!drawPlace) {
         return null
       }
       drawPlace.innerHTML = "";
@@ -77,7 +78,7 @@ class Feature {
           stroke: stroke(dna_info),
           font: font(dna_info)
         });
-        
+
         this.featureElements_data.map((feature, i) => {
           //console.log(feature)
           switch (feature?.objectType) {
@@ -150,6 +151,22 @@ class Feature {
               break;
             case "terminator":
               DrawTerminador({
+                id: feature?._id,
+                canva: svg,
+                dna: DNA,
+                leftEndPosition: feature?.leftEndPosition,
+                rightEndPosition: feature?.rightEndPosition,
+                strand: feature?.strand,
+                labelName: feature?.labelName,
+                stroke: stroke(feature),
+                font: font(feature),
+                color: rgb_to_rgbFormat(feature?.objectRGBColor),
+                tooltip: feature?.tooltip,
+                separation: separation(feature)
+              });
+              break;
+            case "tf_binding_site":
+              DrawTFBindingSite({
                 id: feature?._id,
                 canva: svg,
                 dna: DNA,
