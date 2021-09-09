@@ -1,13 +1,21 @@
+
+//import {font_validate} from '../../draw_validation'
+
 export function orderY(dnaFeatures_data = []) {
   dnaFeatures_data.map((feature) => {
     if (feature.objectType !== "dna") {
       if (feature.objectType === "promoter") {
-        feature.rightEndPosition += 50;
+        //console.log(getTextWidth(feature?.labelName,font_validate(font(feature),DEFAULT_font)))
+        feature.rightEndPosition = feature.leftEndPosition + 30 
+        //getTextWidth(feature?.labelName,font_validate(font(feature),DEFAULT_font));
       }
       feature.level = 1;
       feature.OverlapObjects = [];
       feature.idObjects = [];
     }
+    /*else{
+      //console.log(feature)
+    }*/
     return null;
   });
   let save = 0;
@@ -48,7 +56,7 @@ export function orderY(dnaFeatures_data = []) {
       return null;
     });
   }
-  //console.log(dnaFeatures_data);
+  console.log(dnaFeatures_data);
   return dnaFeatures_data;
 }
 
@@ -74,3 +82,45 @@ function evaluate(dnaFeatures_data) {
   });
   return no_overlap;
 }
+/*
+const DEFAULT_font = {
+  "font": {
+    "size": 12,
+    "family": "arial",
+    "fill": "#000"
+  }
+}
+
+function font(feature) {
+  return {
+    family: feature?.labelFont,
+    size: feature?.labelSize,
+    fill: rgb_to_rgbFormat(feature?.labelRGBColor),
+    separation: "middle"
+  };
+
+}
+function rgb_to_rgbFormat(rgb) {
+  if (rgb) {
+    return `rgb(${rgb})`;
+  }
+  return undefined;
+}
+
+
+/** * Uses canvas.measureText to compute and return the width of the given text of given font in pixels. * * 
+ * @param {String} text The text to be rendered. 
+ * @param {String} font The css font descriptor that text is to be rendered with (e.g. "bold 14px verdana"). * 
+ * @see http://stackoverflow.com/questions/118241/calculate-text-width-with-javascript/21015393#21015393 
+ * Fuente: https://www.iteramos.com/pregunta/2545/calcular-el-ancho-del-texto-con-javascript
+ *  
+ 
+ let getTextWidth = function(text, font) { 
+  // re-use canvas object for better performance 
+  var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas")); 
+  var context = canvas.getContext("2d"); context.font = font; 
+  var metrics = context.measureText(text); 
+  return metrics.width; 
+ };
+
+ */

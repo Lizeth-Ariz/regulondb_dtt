@@ -3,7 +3,7 @@
  * Falta etiqueta
  */
 import { stroke_validate, font_validate, color_validate } from "./draw_validation";
-import { label } from "./label";
+//import { label } from "./label";
 import config from "./elements.conf.json";
 const conf = config.tf_binding_site;
 

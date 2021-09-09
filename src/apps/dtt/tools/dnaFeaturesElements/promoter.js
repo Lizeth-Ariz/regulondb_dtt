@@ -17,6 +17,7 @@ export default function DrawPromoter({
   anchor,
   dna,
   separation = 0,
+  geneHeight = 50,
   leftEndPosition = 10,
   rightEndPosition = 50,
   labelName = "Name",
@@ -39,6 +40,9 @@ export default function DrawPromoter({
     rightEndPosition = leftEndPosition + 10;
   }
   // atributos
+  if(separation>0){
+    geneHeight = 0;
+  }
   let group = canva.group();
   const dnaX = dna.x,
     dnaY = dna.y,
@@ -46,7 +50,37 @@ export default function DrawPromoter({
     dnaSize = dna.size,
     x = ((leftEndPosition - dna.leftEndPosition) * widthActive) / dnaSize,
     sizeP = ((rightEndPosition - leftEndPosition) * widthActive) / dnaSize;
-  //atributos de Cuerpo
+  //scale
+  let scaleH = conf.height/10
+  let scaleW = conf.width/30
+  //Row attributes
+  let arrowH = 10 * scaleH/2
+  let arrowW = 30 * scaleW
+  //Leg attributes
+  let legH = separation + geneHeight + arrowH/2;
+  let height = legH+scaleH;
+  let posX = x + dnaX;
+  let posY = dnaY - legH - arrowH*2;
+  //draw Arrow
+  const ARROW = canva.path(
+    `m ${posX} ${dnaY} l 0 -${legH} l ${arrowW} 0 l -${arrowH/2} -${arrowH/2} l ${arrowH/2} ${arrowH/2} l -${arrowH/2} ${arrowH/2}`
+  );
+  ARROW.fill("none");
+  ARROW.stroke(stroke);
+  //text
+  const TEXT = label({
+    canvas: canva,
+    x: posX,
+    y: posY,
+    text: labelName,
+    font: font
+  });
+  if (strand === "reverse") {
+    ARROW.move(posX,dnaY)
+    ARROW.rotate(180)
+    TEXT.move(posX,dnaY+legH)
+  }
+  /*
   let bodyH = conf.height / 2 + separation - 15;
   //console.log(conf);
   let bodyW = conf.width;
@@ -112,6 +146,7 @@ export default function DrawPromoter({
   );
   arrow.fill("none");
   arrow.stroke(stroke);
+  */
   return {
     id: id,
     canva: canva,

@@ -37,8 +37,17 @@ export function validateElements(dnaFeatures_data = []) {
             let leftEndPosition = toInt(feature?.linkedObjectWhenNoPositions?.leftEndPosition);
             let rightEndPosition = toInt(feature?.linkedObjectWhenNoPositions?.rightEndPosition);
             if (leftEndPosition <= rightEndPosition) {
-              feature.leftEndPosition = leftEndPosition;
-              feature.rightEndPosition = rightEndPosition;
+              feature.leftEndPosition = null;
+              feature.rightEndPosition = null;
+              feature.strand = feature?.linkedObjectWhenNoPositions?.strand
+              feature.anchor = {
+                leftEndPosition: leftEndPosition,
+                rightEndPosition: rightEndPosition,
+                strand: feature?.linkedObjectWhenNoPositions?.strand
+              }
+              if(feature?.objectType === "tf_binding_site" && (rightEndPosition-leftEndPosition >= 100)){
+                feature.rightEndPosition = leftEndPosition+30; 
+              }
               if (feature?.strand) {
                 features.push(feature);
               } else {

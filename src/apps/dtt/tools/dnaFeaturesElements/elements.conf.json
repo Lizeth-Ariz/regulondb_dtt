@@ -51,7 +51,7 @@
   "promoter": {
     "objectType": "promoter",
     "defaultColor": "#000",
-    "height": 40,
+    "height": 20,
     "width": 30,
     "stroke": { "color": "#000", "width": 1, "linecap": "round" },
     "font": {

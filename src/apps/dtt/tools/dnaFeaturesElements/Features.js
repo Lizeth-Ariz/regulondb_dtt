@@ -89,6 +89,7 @@ class Feature {
                 id: feature?._id,
                 canva: svg,
                 dna: DNA,
+                anchor: feature?.anchor,
                 leftEndPosition: feature?.leftEndPosition,
                 rightEndPosition: feature?.rightEndPosition,
                 strand: feature?.strand,
@@ -106,6 +107,7 @@ class Feature {
                 id: feature?._id,
                 canva: svg,
                 dna: DNA,
+                anchor: feature?.anchor,
                 leftEndPosition: feature?.leftEndPosition,
                 rightEndPosition: feature?.rightEndPosition,
                 strand: feature?.strand,
@@ -122,6 +124,7 @@ class Feature {
                 id: feature?._id,
                 canva: svg,
                 dna: DNA,
+                anchor: feature?.anchor,
                 leftEndPosition: feature?.leftEndPosition,
                 rightEndPosition: feature?.rightEndPosition,
                 strand: feature?.strand,
@@ -138,6 +141,7 @@ class Feature {
                 id: feature?._id,
                 canva: svg,
                 dna: DNA,
+                anchor: feature?.anchor,
                 leftEndPosition: feature?.leftEndPosition,
                 rightEndPosition: feature?.rightEndPosition,
                 strand: feature?.strand,
@@ -154,6 +158,7 @@ class Feature {
                 id: feature?._id,
                 canva: svg,
                 dna: DNA,
+                anchor: feature?.anchor,
                 leftEndPosition: feature?.leftEndPosition,
                 rightEndPosition: feature?.rightEndPosition,
                 strand: feature?.strand,
@@ -170,6 +175,7 @@ class Feature {
                 id: feature?._id,
                 canva: svg,
                 dna: DNA,
+                anchor: feature?.anchor,
                 leftEndPosition: feature?.leftEndPosition,
                 rightEndPosition: feature?.rightEndPosition,
                 strand: feature?.strand,
@@ -209,7 +215,7 @@ function font(feature) {
   return {
     family: feature?.labelFont,
     size: feature?.labelSize,
-    fill: rgb_to_rgbFormat(feature?.labelRGGColor),
+    fill: rgb_to_rgbFormat(feature?.labelRGBColor),
     separation: "middle"
   };
 }
