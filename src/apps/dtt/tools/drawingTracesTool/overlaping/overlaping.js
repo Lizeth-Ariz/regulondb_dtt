@@ -1,22 +1,23 @@
-import geneRules from "./geneRules";
+import {geneRulesInitialSettings, geneRulesOverlaping} from "./geneRules";
+import { promoterRulesInitialSettings, promoterRulesOverlaping } from "./promoterRules";
 
 export default function overlaping(dnaFeatures_data, CONF) {
     //Parametros Iniciales
     dnaFeatures_data.map((feature) => {
         if (feature.objectType !== "dna") {
             try {
-                feature.separation = 0
-                feature.downPosition = 0
-                feature.height = CONF[feature.objectType].height
-                if (feature.objectType === "gene") {
-                    feature.height -= 20
+                switch (feature.objectType) {
+                    case "gene":
+                        geneRulesInitialSettings(feature,CONF)
+                        break;
+                    case "promoter":
+                        promoterRulesInitialSettings(feature,CONF)
+                        break;
+                    default:
+                        break;
                 }
-                feature.upPosition = feature.height
-                feature.size = feature.rightEndPosition - feature.leftEndPosition
-                feature.leftPosition = feature.leftEndPosition
-                feature.rightPosition = feature.rightEndPosition
-                feature.dnaPriority = CONF.dnaPriority[feature.objectType]
             } catch (error) {
+                console.warn(`this feature "${feature?.objectType}" no Initial Setings Rules defined`)
                 console.error(error)
             }
 
@@ -52,18 +53,23 @@ export default function overlaping(dnaFeatures_data, CONF) {
                 verticalCheck(element, feature)
             ) {
                 //console.log(horizontalCheck(element, feature))
+                let OverlapEfect = {feature,element}
                 switch (feature.objectType) {
                     case "gene":
-                        let geneR = geneRules(feature, element)
+                        OverlapEfect = geneRulesOverlaping(feature, element)
                         //console.log(geneR)
-                        let indx = dnaFeatures_data.indexOf(feature);
-                        element = geneR.element
-                        dnaFeatures_data[indx] = geneR.feature
+                        
+                        break;
+                    case "promoter":
+                        OverlapEfect = promoterRulesOverlaping(feature, element)
                         break;
                     default:
-                        console.warn("Unknow element")
+                        console.warn(`this feature "${feature.objectType}" no overlaping rules defined`)
                         break;
                 }
+                let indx = dnaFeatures_data.indexOf(feature);
+                element = OverlapEfect.element
+                dnaFeatures_data[indx] = OverlapEfect.feature
             } else {
                 if (
                     feature.leftPosition === element.leftPosition
@@ -102,8 +108,6 @@ function evaluateOverlaping(dnaFeatures_data) {
             );
             if (t) {
                 no_overlap = false;
-                console.log("ele",t)
-                console.log("fe",feature)
             }
         }
         return null;
