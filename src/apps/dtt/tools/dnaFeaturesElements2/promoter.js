@@ -17,7 +17,7 @@ export default function DrawPromoter({
   anchor,
   dna,
   separation = 0,
-  geneHeight = 50,
+  geneHeight = 60,
   leftEndPosition = 10,
   rightEndPosition = 50,
   labelName = "Name",

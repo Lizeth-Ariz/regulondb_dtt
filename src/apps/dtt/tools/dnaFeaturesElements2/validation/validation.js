@@ -7,6 +7,6 @@ export function validation(dnaFeatures_data) {
   // validar Id y estructura de dnaFeatures_data es una array []
   dnaFeatures_data = validateElements(dnaFeatures_data);
   dnaFeatures_data = validateDNA(dnaFeatures_data);
-  dnaFeatures_data = overlaping(dnaFeatures_data);
+  //dnaFeatures_data = overlaping(dnaFeatures_data);
   return dnaFeatures_data;
 }

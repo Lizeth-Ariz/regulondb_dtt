@@ -1,0 +1,49 @@
+{
+    "canvas": {
+        "backgroundColor": "#e1ebf2"
+    },
+    "dnaPriority":{
+        "dna": 0,
+        "gene": 1,
+        "operon": 2,
+        "promoter": 3,
+        "riboswitch": 4,
+        "transcriptional_attenuator": 5,
+        "transnational_attenuator": 6,
+        "terminator": 7,
+        "srna": 8,
+        "rna": 9,
+        "ppGpp": 10,
+        "tf_binding_site": 11
+      },
+    "dna": {
+        "objectType": "dna",
+        "defaultColor": "#000",
+        "stroke": {
+            "color": "#000",
+            "width": 1,
+            "linecap": "round"
+        },
+        "font": {
+            "size": 12,
+            "family": "arial",
+            "fill": "#000"
+        }
+    },
+    "gene": {
+        "objectType": "gene",
+        "defaultColor": "#666666",
+        "height": 40,
+        "rowSize": 0.5,
+        "stroke": {
+            "color": "#000",
+            "width": 1,
+            "linecap": "round"
+        },
+        "font": {
+            "size": 12,
+            "family": "arial",
+            "fill": "#000"
+        }
+    }
+}

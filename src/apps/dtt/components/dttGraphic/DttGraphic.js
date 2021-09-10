@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { IconButton, Button } from "../../ui-components/index";
-import Feature from "../../tools/dnaFeaturesElements/Features";
+import Feature from "../../tools/dnaFeaturesElements2/Features";
+import DrawingTracesTool from "../../tools/drawingTracesTool/drawing_traces_tool";
 import Panzoom from "@panzoom/panzoom";
 import { ReImg } from "reimg";
 //import { pointer } from "d3";
@@ -176,7 +177,11 @@ class DttGraphic extends Component {
                 <div>
                   <div style={{overflow: "auto"}} id={`divCanvas_${id_canvas}`}>
                     {
-                      FEATURES.draw(`divCanvas_${id_canvas}`, "id_canvas")
+                     //FEATURES.draw(`divCanvas_${id_canvas}`, "id_canvas")
+                    }
+                    {
+                      //console.log("Hola3")
+                      DrawingTracesTool(`divCanvas_${id_canvas}`,"id_canvas_02",dnaFeatures_data,"result")
                     }
                   </div>
                 </div>

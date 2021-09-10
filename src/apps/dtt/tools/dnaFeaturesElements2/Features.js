@@ -219,6 +219,13 @@ function font(feature) {
     separation: "middle"
   };
 }
+export function rgb_to_rgbFormat(rgb) {
+  if (rgb) {
+    return `rgb(${rgb})`;
+  }
+  return undefined;
+}
+
 function opacity(feature) {
   let op = 1;
   if (feature.OverlapObjects !== []) {
@@ -228,7 +235,7 @@ function opacity(feature) {
 }
 function separation(feature) {
   let sep = 0;
-  feature.OverlapObjects.map((ob) => {
+  /*feature.OverlapObjects.map((ob) => {
     let h = config[ob].height;
     if (ob === "gene" && feature.objectType === "gene") {
       sep += h - h * 0.5;
@@ -240,12 +247,7 @@ function separation(feature) {
       }
     }
     return null;
-  });
+  });*/
   return sep;
 }
-export function rgb_to_rgbFormat(rgb) {
-  if (rgb) {
-    return `rgb(${rgb})`;
-  }
-  return undefined;
-}
+
