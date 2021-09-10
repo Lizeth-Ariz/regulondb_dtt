@@ -34,6 +34,8 @@ export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
                     conf: CONF?.gene
                   });
                 break;
+            case "dna":
+                break;
             default:
                 console.warn(`this feature "${feature?.objectType}" no drawing process`)
                 break;
