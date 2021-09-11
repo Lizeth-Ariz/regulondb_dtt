@@ -1,6 +1,5 @@
 import { validation } from "./validation/validation";
 import CONF from "./conf.json"
-//import overlaping from "./overlaping/overlaping";
 import ordering from "./ordering/ordering";
 import canvas from "./canvaBuilder/canva";
 import DNAbuilder from "./dnaBuldier/dna";
@@ -23,4 +22,5 @@ export default function DrawingTracesTool(idDrawPlace, idCanvas,dnaFeatures_data
         return null
     }
     Draw(CANVAS,DNA,dnaFeatures_data,CONF)
+    //overlaping(dnaFeatures_data,CONF)
 }

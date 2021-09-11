@@ -1,6 +1,7 @@
 import { stroke_define, font_define, rgb_to_rgbFormat, opacity_define } from "../validation/v_draw"
 import DrawGene from "./gene";
 import DrawPromoter from "./promoter";
+import overlaping from "./overlaping/overlaping";
 
 export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
     if (!CANVAS || !dnaFeatures_data || !CONF || dnaFeatures_data === []) {
@@ -14,14 +15,20 @@ export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
         return null;
     }
 
+    let drawFeatures = []
+
     dnaFeatures_data.map(feature=>{
+        let draw
+        if(feature?.objectType === "dna"){
+            return null
+        }
         switch (feature?.objectType) {
             case "dna":
                 break;
             case "gene":
-                DrawGene({
+                draw = DrawGene({
                     id: feature?._id,
-                    canva: CANVAS,
+                    canvas: CANVAS,
                     dna: DNA,
                     anchor: feature?.anchor,
                     leftEndPosition: feature?.leftEndPosition,
@@ -38,7 +45,7 @@ export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
                   });
                 break;
             case "promoter":
-                DrawPromoter({
+                draw = DrawPromoter({
                     id: feature?._id,
                     canva: CANVAS,
                     dna: DNA,
@@ -60,6 +67,9 @@ export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
                 console.warn(`this feature "${feature?.objectType}" no drawing process`)
                 break;
         }
+        //console.log(draw)
+        drawFeatures.push(draw)
+        overlaping(draw,drawFeatures,CONF)
         return null
     })
 }
