@@ -41,8 +41,7 @@ export default function DrawPromoter({
     dnaY = dna.y,
     widthActive = dna.widthActive,
     dnaSize = dna.size,
-    x = ((leftEndPosition - dna.leftEndPosition) * widthActive) / dnaSize,
-    sizeP = ((rightEndPosition - leftEndPosition) * widthActive) / dnaSize;
+    x = ((leftEndPosition - dna.leftEndPosition) * widthActive) / dnaSize;
   //scale
   let scaleH = conf.height/10
   let scaleW = conf.width/30
@@ -51,12 +50,12 @@ export default function DrawPromoter({
   let arrowW = 30 * scaleW
   //Leg attributes
   let legH = separation + arrowH/2;
-  let height = legH+scaleH;
+  let height = scaleH+font.size;
   let posX = x + dnaX;
   let posY = dnaY - legH - arrowH*2;
   //draw Arrow
   const ARROW = canva.path(
-    `m ${posX} ${dnaY-arrowH/2} l ${arrowW} 0 l -${arrowH/2} -${arrowH/2} l ${arrowH/2} ${arrowH/2} l -${arrowH/2} ${arrowH/2}`
+    `m ${posX} ${dnaY-legH} l ${arrowW} 0 l -${arrowH/2} -${arrowH/2} l ${arrowH/2} ${arrowH/2} l -${arrowH/2} ${arrowH/2}`
   );
   ARROW.fill("none");
   ARROW.stroke(stroke);
@@ -71,12 +70,14 @@ export default function DrawPromoter({
   //leg
   let lh = dnaY-legH;
   if (strand === "reverse") {
-    ARROW.move(posX-arrowW,dnaY)
-    ARROW.rotate(180)
-    TEXT.move(posX-arrowW,dnaY+legH)
-    lh =dnaY+legH
+    ARROW.move(posX-arrowW,dnaY+legH-arrowH/2);
+    ARROW.rotate(180);
+    TEXT.move(posX-arrowW,dnaY+legH);
+    lh =dnaY+legH;
+    posX = posX-arrowW;
+    posY = dnaY+legH-arrowH/2
   }
-  canva.line(posX, dnaY, posX, lh).stroke(stroke)
+  const leg = canva.line(x + dnaX, dnaY, x + dnaX, lh).stroke(stroke)
   let promoter = canva.group();
   promoter.id(id)
   promoter.add(ARROW)
@@ -84,11 +85,12 @@ export default function DrawPromoter({
   return {
     id: id,
     canva: canva,
-    sizeP: sizeP,
     draw: promoter,
+    leg: leg,
     posX: posX,
     posY: posY,
     height: height,
+    arrowW: arrowW,
     dna: dna,
     separation: separation,
     leftEndPosition: leftEndPosition,

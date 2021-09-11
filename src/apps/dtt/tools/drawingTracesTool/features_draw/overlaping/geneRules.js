@@ -6,9 +6,10 @@ const RULE1 = true
 
 
 export function geneRulesOverlaping(draw,feature,posY,dnaPriority) {
-  let height = feature.height/2
+  let height = feature.height+1
   if (dnaPriority[draw.objectType] <= dnaPriority[feature.objectType]) {
     if (
+      feature.objectType === "gene" &&
       draw.size <= feature.size &&
       draw.leftEndPosition >= feature.leftEndPosition &&
       draw.rightEndPosition >= feature.rightEndPosition &&

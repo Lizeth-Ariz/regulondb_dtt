@@ -1,4 +1,5 @@
 import { geneRulesOverlaping } from "./geneRules"
+import { promoterRulesOverlaping } from "./promoterRules"
 
 export default function overlaping(draw, drawFeatures = [], CONF) {
     let dom_draw = document.getElementById(draw.id)
@@ -12,7 +13,7 @@ export default function overlaping(draw, drawFeatures = [], CONF) {
         while (evaluateOverlaping(dom_draw, dom_feature) && attempts > 0) {
             posY = overlapCorrection(draw, feature, posY, CONF.dnaPriority);
             attempts--;
-            console.log(draw.labelName)
+            //console.log(draw)
         }
         return null
     })
@@ -23,7 +24,7 @@ function overlapCorrection(draw, feature, posY, dnaPriority) {
             posY = geneRulesOverlaping(draw, feature, posY, dnaPriority)
             break;
         case "promoter":
-            //OverlapEfect = promoterRulesOverlaping(feature, element)
+            posY = promoterRulesOverlaping(draw, feature, posY, dnaPriority)
             break;
         default:
             console.warn(`this feature "${feature.objectType}" no overlaping rules defined`)
@@ -39,6 +40,6 @@ function evaluateOverlaping(dom_draw, dom_feature) {
     //CHECK IF THE TWO BOUNDING BOXES OVERLAP
     return !(dom_feature.left > dom_draw.right ||
         dom_feature.right < dom_draw.left ||
-        dom_feature.top >= dom_draw.bottom ||
-        dom_feature.bottom <= dom_draw.top);
+        dom_feature.top > dom_draw.bottom ||
+        dom_feature.bottom < dom_draw.top);
 }

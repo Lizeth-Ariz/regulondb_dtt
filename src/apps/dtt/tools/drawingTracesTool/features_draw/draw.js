@@ -22,6 +22,7 @@ export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
         if(feature?.objectType === "dna"){
             return null
         }
+        //console.log(feature)
         switch (feature?.objectType) {
             case "dna":
                 break;
@@ -58,7 +59,7 @@ export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
                     font: font_define(feature),
                     color: rgb_to_rgbFormat(feature?.objectRGBColor),
                     tooltip: feature?.tooltip,
-                    separation: feature.separation,
+                    separation: CONF.gene.height,
                     opacity: opacity_define(feature),
                     conf: CONF?.promoter
                 })
