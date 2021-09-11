@@ -32,16 +32,7 @@ export default function canvas(idDrawPlace, idCanvas, dnaFeatures_data, CONF, au
     }
 
     function heightEstimates() {
-        let height = 0
-        dnaFeatures_data.map((feature) => {
-            if (feature.objectType !== "dna") {
-                let elementH = feature.downPosition + CONF[feature.objectType].height;
-                if (elementH > height) {
-                    height = elementH;
-                }
-            }
-            return null;
-        });
+        let height = 250
         return height*2
     }
 

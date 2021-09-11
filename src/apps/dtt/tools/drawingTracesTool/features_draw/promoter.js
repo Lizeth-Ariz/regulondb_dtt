@@ -37,7 +37,6 @@ export default function DrawPromoter({
     rightEndPosition = leftEndPosition + 10;
   }
   // atributos
-  let group = canva.group();
   const dnaX = dna.x,
     dnaY = dna.y,
     widthActive = dna.widthActive,
@@ -57,7 +56,7 @@ export default function DrawPromoter({
   let posY = dnaY - legH - arrowH*2;
   //draw Arrow
   const ARROW = canva.path(
-    `m ${posX} ${dnaY} l 0 -${legH} l ${arrowW} 0 l -${arrowH/2} -${arrowH/2} l ${arrowH/2} ${arrowH/2} l -${arrowH/2} ${arrowH/2}`
+    `m ${posX} ${dnaY-arrowH/2} l ${arrowW} 0 l -${arrowH/2} -${arrowH/2} l ${arrowH/2} ${arrowH/2} l -${arrowH/2} ${arrowH/2}`
   );
   ARROW.fill("none");
   ARROW.stroke(stroke);
@@ -65,87 +64,28 @@ export default function DrawPromoter({
   const TEXT = label({
     canvas: canva,
     x: posX,
-    y: posY,
+    y: posY+3,
     text: labelName,
     font: font
   });
+  //leg
+  let lh = dnaY-legH;
   if (strand === "reverse") {
-    ARROW.move(posX,dnaY)
+    ARROW.move(posX-arrowW,dnaY)
     ARROW.rotate(180)
-    TEXT.move(posX,dnaY+legH)
+    TEXT.move(posX-arrowW,dnaY+legH)
+    lh =dnaY+legH
   }
-  /*
-  let bodyH = conf.height / 2 + separation - 15;
-  //console.log(conf);
-  let bodyW = conf.width;
-  const headH = conf.height;
-  const height = headH + bodyH;
-  let posX = x + dnaX;
-  let posY = dnaY;
-  let txtX;
-  let txtY;
-  // atributos de flecha
-  let pmX;
-  let pmY;
-  let az;
-  // atributos de position
-  if (strand === "reverse") {
-    bodyH = posY + bodyH + headH / 2;
-    bodyW = posX - bodyW;
-    txtX = bodyW;
-    txtY = bodyH + font.size - 5;
-    pmX = bodyW;
-    pmY = bodyH;
-    az = -5;
-  } else {
-    bodyH = posY - bodyH - headH / 2;
-    bodyW = posX + bodyW;
-    txtX = posX;
-    txtY = bodyH - font.size - 5;
-    pmX = bodyW;
-    pmY = bodyH;
-    az = 5;
-  }
-
-  // draw body
-  const body = canva.path(
-    "M " + posX + "," + posY + " " + posX + "," + bodyH + "H " + bodyW
-  );
-  body.fill("none");
-  body.stroke(stroke);
-
-  //text
-  const text = label({
-    canvas: canva,
-    x: txtX,
-    y: txtY,
-    text: labelName,
-    font: font
-  });
-
-  // draw arrow
-  const arrow = canva.path(
-    "M " +
-      (pmX - az) +
-      "," +
-      (pmY + az) +
-      " " +
-      pmX +
-      "," +
-      pmY +
-      " " +
-      (pmX - az) +
-      "," +
-      (pmY - az)
-  );
-  arrow.fill("none");
-  arrow.stroke(stroke);
-  */
+  canva.line(posX, dnaY, posX, lh).stroke(stroke)
+  let promoter = canva.group();
+  promoter.id(id)
+  promoter.add(ARROW)
+  promoter.add(TEXT)
   return {
     id: id,
     canva: canva,
     sizeP: sizeP,
-    draw: group,
+    draw: promoter,
     posX: posX,
     posY: posY,
     height: height,
