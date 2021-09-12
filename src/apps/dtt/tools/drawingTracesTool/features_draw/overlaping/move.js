@@ -1,6 +1,6 @@
 export function move(obj,posY,height) {
     if(posY===0){
-        posY = obj.posY
+        posY = obj.draw.y()
     }
     if (obj.strand === "reverse") {
         posY = posY + height

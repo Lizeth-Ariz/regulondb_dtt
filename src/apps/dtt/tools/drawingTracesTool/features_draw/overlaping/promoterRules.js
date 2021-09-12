@@ -3,7 +3,7 @@ import { move } from "./move"
 /* Reglas */
 
 export function promoterRulesOverlaping(draw,feature,posY,dnaPriority) {
-  let height = feature.height
+  let height = feature.height +1 
   if (dnaPriority[draw.objectType] >= dnaPriority[feature.objectType]) {
     posY = move(draw,posY,height)
     draw.leg.height(draw.leg.height()+(height))

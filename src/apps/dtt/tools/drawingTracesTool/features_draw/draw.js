@@ -1,9 +1,10 @@
 import { stroke_define, font_define, rgb_to_rgbFormat, opacity_define } from "../validation/v_draw"
-import DrawGene from "./gene";
-import DrawPromoter from "./promoter";
+import DrawGene from "./features/gene";
+import DrawPromoter from "./features/promoter";
 import overlaping from "./overlaping/overlaping";
+import DrawTFBindingSite from "./features/tf_binding_site";
 
-export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
+export default function Draw(CANVAS, DNA, dnaFeatures_data = [], CONF) {
     if (!CANVAS || !dnaFeatures_data || !CONF || dnaFeatures_data === []) {
         console.error(
             `Some elements remain to be defined: \n
@@ -17,9 +18,9 @@ export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
 
     let drawFeatures = []
 
-    dnaFeatures_data.map(feature=>{
+    dnaFeatures_data.map(feature => {
         let draw
-        if(feature?.objectType === "dna"){
+        if (feature?.objectType === "dna") {
             return null
         }
         //console.log(feature)
@@ -43,7 +44,7 @@ export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
                     separation: feature.separation,
                     opacity: opacity_define(feature),
                     conf: CONF?.gene
-                  });
+                });
                 break;
             case "promoter":
                 draw = DrawPromoter({
@@ -64,13 +65,31 @@ export default function Draw(CANVAS,DNA,dnaFeatures_data = [],CONF) {
                     conf: CONF?.promoter
                 })
                 break;
+            case "tf_binding_site":
+                draw = DrawTFBindingSite({
+                    id: feature?._id,
+                    canva: CANVAS,
+                    dna: DNA,
+                    anchor: feature?.anchor,
+                    leftEndPosition: feature?.leftEndPosition,
+                    rightEndPosition: feature?.rightEndPosition,
+                    strand: feature?.strand,
+                    labelName: feature?.labelName,
+                    stroke: stroke_define(feature),
+                    font: font_define(feature),
+                    color: rgb_to_rgbFormat(feature?.objectRGBColor),
+                    tooltip: feature?.tooltip,
+                    separation: feature.separation,
+                    conf: CONF?.tf_binding_site
+                });
+                break;
             default:
                 console.warn(`this feature "${feature?.objectType}" no drawing process`)
                 break;
         }
         //console.log(draw)
         drawFeatures.push(draw)
-        overlaping(draw,drawFeatures,CONF)
+        overlaping(draw, drawFeatures, CONF)
         return null
     })
 }

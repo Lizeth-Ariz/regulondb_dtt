@@ -1,3 +1,4 @@
+import { bsiteRulesOverlaping } from "./bindingSiteRules"
 import { geneRulesOverlaping } from "./geneRules"
 import { promoterRulesOverlaping } from "./promoterRules"
 
@@ -13,8 +14,13 @@ export default function overlaping(draw, drawFeatures = [], CONF) {
         while (evaluateOverlaping(dom_draw, dom_feature) && attempts > 0) {
             posY = overlapCorrection(draw, feature, posY, CONF.dnaPriority);
             attempts--;
-            //console.log(draw)
+            //console.log(attempts)
         }
+        if(attempts < 40){
+            console.log(draw.labelName,attempts)
+            console.log(draw.leftEndPosition+" "+draw.rightEndPosition)
+        }
+        //console.log(draw.labelName,attempts)
         return null
     })
 }
@@ -25,6 +31,9 @@ function overlapCorrection(draw, feature, posY, dnaPriority) {
             break;
         case "promoter":
             posY = promoterRulesOverlaping(draw, feature, posY, dnaPriority)
+            break;
+        case"tf_binding_site":
+        posY = bsiteRulesOverlaping(draw, feature, posY, dnaPriority)
             break;
         default:
             console.warn(`this feature "${feature.objectType}" no overlaping rules defined`)

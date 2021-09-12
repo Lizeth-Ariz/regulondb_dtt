@@ -41,6 +41,7 @@ export function validateElements(dnaFeatures_data = []) {
               feature.rightEndPosition = null;
               feature.strand = feature?.linkedObjectWhenNoPositions?.strand
               feature.anchor = {
+                _id: feature?.linkedObjectWhenNoPositions?.id, 
                 leftEndPosition: leftEndPosition,
                 rightEndPosition: rightEndPosition,
                 strand: feature?.linkedObjectWhenNoPositions?.strand

@@ -2,12 +2,11 @@
 /**
  * falta agregar la funcion para mostrar el corte del elemento,
  */
- import { group } from "d3-array";
 import {
     stroke_validate,
     font_validate,
     color_validate
-  } from "../validation/v_draw";
+  } from "../../validation/v_draw";
   import { label } from "./label";
   
   export default function DrawGene({
