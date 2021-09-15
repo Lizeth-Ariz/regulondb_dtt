@@ -1,7 +1,7 @@
 import { stroke_define, font_define, rgb_to_rgbFormat, opacity_define } from "../validation/v_draw"
 import DrawGene from "./features/gene";
 import DrawPromoter from "./features/promoter";
-import overlaping from "./overlaping/overlaping";
+import overlaping, { overlapCheck } from "./overlaping/overlaping";
 import DrawTFBindingSite from "./features/tf_binding_site";
 
 export default function Draw(CANVAS, DNA, dnaFeatures_data = [], CONF) {
@@ -92,4 +92,5 @@ export default function Draw(CANVAS, DNA, dnaFeatures_data = [], CONF) {
         overlaping(draw, drawFeatures, CONF)
         return null
     })
+    //console.log(drawFeatures)
 }
