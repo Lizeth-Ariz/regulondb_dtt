@@ -1,13 +1,15 @@
 import { Button, TextArea } from "../../ui-components/index";
-import demo from "./demo.txt";
-import data from "./data1.txt";
-import data2 from "./data2.txt";
+import data1 from "./demo1.txt";
+import data2 from "./demo2.txt";
+import data3 from "./demo3.txt";
 import DttGraphic from "../dttGraphic/DttGraphic";
-
 import React from "react";
 import { validateData } from "./validateData";
 
+
 //console.log(DttGraphic)
+
+
 
 export const Form = ({
   valueText = "",
@@ -53,32 +55,77 @@ export const Form = ({
           document.getElementById("userData_textArea").value = "";
           document.getElementById("userData_inputFile").value = "";
         }}
-        style={{ float: "left", marginTop: "2%", marginRight: "2%" }}
+        style={{ float: "left",  marginRight: "2%",marginTop: "2%" }}
       />
       <Button
         label="Demo 1"
-        onClick={() => {
-          document.getElementById("userData_textArea").value = demo;
-        }}
-        style={{ marginTop: "2%" }}
+        onClick={readDemoOne}
+        style={{float:"left", marginRight: "2%" ,marginTop: "2%" }}
       />
       <Button
         label="Demo 2"
-        onClick={() => {
-          document.getElementById("userData_textArea").value = data;
-        }}
-        style={{ marginTop: "2%" }}
+        onClick={readDemoTwo}
+        style={{ float: "left", marginRight: "2%" , marginTop: "2%" }}
       />
       <Button
         label="Demo 3"
-        onClick={() => {
-          document.getElementById("userData_textArea").value = data2;
-        }}
-        style={{ marginTop: "2%" }}
+        onClick={readDemoThree}
+        style={{float: "left", marginRight: "2%" , marginTop: "2%" }}
       />
     </div>
   );
 };
+function readDemoOne(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", data1, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                document.getElementById("userData_textArea").value = allText;
+            }
+        }
+    }
+    rawFile.send(null);
+}
+function readDemoTwo(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", data2, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                document.getElementById("userData_textArea").value = allText;
+            }
+        }
+    }
+    rawFile.send(null);
+}
+function readDemoThree(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", data3, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                document.getElementById("userData_textArea").value = allText;
+            }
+        }
+    }
+    rawFile.send(null);
+}
 
 function readFile(file) {
   let reader = new FileReader();
